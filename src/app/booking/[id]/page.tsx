@@ -3,6 +3,12 @@
 import { useParams } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 
+// This function is REQUIRED for dynamic routes when using output: 'export'
+export async function generateStaticParams() {
+  // Return an empty array or a set of placeholder IDs to satisfy the build
+  return [{ id: '1' }]; 
+}
+
 export default function BookingPage() {
   const params = useParams();
   const flightId = params?.id;
@@ -16,11 +22,10 @@ export default function BookingPage() {
             Ready to book your flight?
           </h1>
           <p className="text-slate-600 mb-8">
-            You are one step away from confirming your trip for flight ID: {flightId}.
+            {flightId ? `Viewing flight: ${flightId}` : "Loading..."}
           </p>
-          
           <a 
-            href="https://your-affiliate-link-here.com" 
+            href={`https://your-affiliate-link-here.com?id=${flightId}`} 
             target="_blank" 
             rel="noopener noreferrer"
             className="block w-full bg-brand-indigo text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity"
