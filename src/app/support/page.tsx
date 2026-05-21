@@ -2,6 +2,7 @@
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { motion } from 'framer-motion';
 
 export default function SupportPage() {
   return (
@@ -11,13 +12,23 @@ export default function SupportPage() {
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            {/* Heading updated to use standard h1 class that inherits brand color */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
             <h1 className="text-5xl font-black mb-6 tracking-tight">How can we help?</h1>
             <p className="text-xl text-slate-600">Everything you need to know about your travel experience with AeroSwift.</p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid md:grid-cols-2 gap-8 mb-16"
+          >
             {/* FAQ Item 1 */}
             <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
               <h3 className="text-lg font-bold text-slate-900 mb-3">Where is my booking confirmation?</h3>
@@ -55,16 +66,21 @@ export default function SupportPage() {
                 support@aeroswift.com
               </a>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Bottom CTA */}
-          <div className="bg-brand-indigo rounded-3xl p-10 text-center text-white">
+          {/* Bottom CTA - Updated background color for better balance */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-slate-900 rounded-3xl p-10 text-center text-white"
+          >
             <h3 className="text-2xl font-bold mb-3">Still can't find what you're looking for?</h3>
-            <p className="text-indigo-100 mb-6">Our dedicated support team usually replies within 24 hours.</p>
-            <a href="mailto:support@aeroswift.com" className="px-8 py-3 bg-white text-brand-indigo font-bold rounded-full hover:bg-slate-100 transition">
+            <p className="text-slate-400 mb-6">Our dedicated support team usually replies within 24 hours.</p>
+            <a href="mailto:support@aeroswift.com" className="inline-block px-8 py-3 bg-white text-slate-900 font-bold rounded-full hover:bg-slate-100 transition">
               Contact Support
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
