@@ -1,4 +1,3 @@
-// src/components/Navbar.tsx
 import Link from 'next/link';
 
 export default function Navbar() {
@@ -24,12 +23,15 @@ export default function Navbar() {
           <Link href="/support" className="text-sm font-semibold text-slate-600 hover:text-[#560591] transition-colors">
             Support
           </Link>
-          <Link 
-            href="/" 
+          {/* External affiliate redirect using standard <a> tag */}
+          <a 
+            href="https://www.aviasales.com/?marker=730324" 
+            target="_blank" 
+            rel="noopener noreferrer"
             className="px-5 py-2.5 bg-[#560591] text-white text-sm font-bold rounded-full hover:bg-indigo-800 transition-all shadow-md hover:shadow-indigo-200"
           >
             Book Now
-          </Link>
+          </a>
         </div>
       </div>
     </header>

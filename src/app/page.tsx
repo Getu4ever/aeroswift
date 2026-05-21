@@ -1,4 +1,3 @@
-// src/app/page.tsx
 'use client';
 
 import Navbar from '@/components/Navbar';
@@ -12,7 +11,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-slate-50">
       <Navbar />
       
-      {/* Hero Header: Tightened spacing to remove gaps */}
+      {/* Hero Header */}
       <section className="text-center pt-8 pb-8">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
@@ -23,16 +22,16 @@ export default function HomePage() {
           Find your <span style={{ color: '#560591' }}>next journey.</span>
         </motion.h1>
         
-        {/* Full width container for the search box */}
+        {/* Search Box: No longer requires the 'title' prop */}
         <div className="w-full">
           <AviasalesSearch />
         </div>
       </section>
 
-      {/* Destinations Section: Padding adjusted to close the gap */}
+      {/* Destinations Section */}
       <section className="max-w-7xl mx-auto px-6 pt-0 pb-20">
         <PopularDestinations onSelect={(city) => {
-            window.location.href = `https://www.aviasales.com/search/LHR1?destination_name=${city}&shmarker=730324`;
+            window.location.href = `https://www.aviasales.com/search/LHR1?destination_name=${city}&marker=730324`;
         }} />
       </section>
 

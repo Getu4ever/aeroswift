@@ -1,29 +1,27 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* * 'export' allows the app to be deployed as a static site.
-   * Note: This disables features like Image Optimization and API routes.
+  /* * Removing 'output: export' allows Next.js to run as a dynamic 
+   * server, which is required for Sanity Studio and standard 
+   * Next.js image optimization.
    */
-  output: 'export',
   
-  /* * images.unoptimized is required when output: 'export' 
-   * because the standard Next.js image optimizer requires a running server.
-   */
-  images: {
-    unoptimized: true,
-  },
-  
-  /* * trailingSlash: true ensures that routes like /booking/ 
-   * are generated as /booking/index.html, which is essential 
-   * for reliable routing on static hosting platforms.
+  /* * If you need to keep trailingSlash for specific hosting needs 
+   * (like S3/Cloudfront), you can keep it.
    */
   trailingSlash: true,
   
-  /* * Note: Ensure 'basePath' matches your repository name if 
-   * you are deploying to GitHub Pages (e.g., '/aeroswift').
-   * For Vercel root-domain deployments, you can remove or comment this out.
+  /* * You can remove images.unoptimized once you remove output: 'export'
+   * unless you specifically prefer the unoptimized behavior.
    */
-  // basePath: '/aeroswift', 
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
