@@ -23,7 +23,7 @@ export default function Footer() {
             <div>
               <h4 className="text-xs font-bold text-white/60 uppercase tracking-widest mb-4">Explore</h4>
               <ul className="space-y-3 text-sm">
-                <li><Link href="/flights" className="hover:text-indigo-200 transition">Flights</Link></li>
+                <li><Link href="/" className="hover:text-indigo-200 transition">Flights</Link></li>
                 <li><Link href="/destinations" className="hover:text-indigo-200 transition">Destinations</Link></li>
                 <li><Link href="/deals" className="hover:text-indigo-200 transition">Travel Deals</Link></li>
               </ul>
