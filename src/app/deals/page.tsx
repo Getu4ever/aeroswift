@@ -3,6 +3,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
+import Image from 'next/image'; // 1. Import Image component
 
 const deals = [
   { 
@@ -11,7 +12,7 @@ const deals = [
     route: "LON-PAR", 
     tag: "City Break", 
     link: "https://aviasales.tpo.li/Ntu6rPsQ",
-    image: "/images/paris.jpg"
+    image: "/images/paris.jpg" 
   },
   { 
     destination: "New York", 
@@ -19,7 +20,7 @@ const deals = [
     route: "LON-NYC", 
     tag: "Trending", 
     link: "https://aviasales.tpo.li/85qnfAxa",
-    image: "/images/ny.jpg"
+    image: "/images/ny.jpg" 
   },
   { 
     destination: "Dubai", 
@@ -27,7 +28,7 @@ const deals = [
     route: "LON-DXB", 
     tag: "Luxury", 
     link: "https://aviasales.tpo.li/niRfQlyF",
-    image: "/images/dubai.jpg"
+    image: "/images/dubai.jpg" 
   },
 ];
 
@@ -51,16 +52,23 @@ export default function DealsPage() {
           {deals.map((deal, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+              className="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all overflow-hidden"
             >
-              <div className="h-48 w-full overflow-hidden">
-                <img src={deal.image} alt={deal.destination} className="w-full h-full object-cover" />
+              {/* 2. Optimized Image Container */}
+              <div className="h-48 w-full relative bg-slate-200 animate-pulse">
+                <Image 
+                  src={deal.image} 
+                  alt={deal.destination} 
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
               </div>
               <div className="p-8">
-                <span className="text-xs font-bold text-brand-indigo uppercase tracking-wider">{deal.tag}</span>
+                <span className="text-xs font-bold text-[#560591] uppercase tracking-wider">{deal.tag}</span>
                 <h2 className="text-2xl font-black text-slate-900 mt-2">{deal.destination}</h2>
                 <p className="text-slate-500 mb-6">{deal.route}</p>
                 <div className="text-4xl font-black text-slate-900 mb-6">{deal.price}</div>
@@ -68,7 +76,7 @@ export default function DealsPage() {
                   href={deal.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full py-3 bg-brand-indigo text-white text-center font-bold rounded-full hover:bg-indigo-800 transition"
+                  className="block w-full py-3 bg-[#560591] text-white text-center font-bold rounded-full hover:bg-indigo-800 transition active:scale-[0.98]"
                 >
                   Book Flight
                 </a>
