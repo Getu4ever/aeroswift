@@ -1,23 +1,10 @@
-// src/components/JsonLd.tsx
-export default function JsonLd({ post }: { post: any }) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.seoTitle || post.title,
-    "description": post.excerpt,
-    "image": post.imageUrl,
-    "datePublished": post.publishedAt,
-    "keywords": post.keywords?.join(", "), // Uses the keywords you just added!
-    "author": {
-      "@type": "Organization",
-      "name": "AeroSwift"
-    }
-  };
-
+export default function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(data),
+      }}
     />
   );
 }

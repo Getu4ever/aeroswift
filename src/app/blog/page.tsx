@@ -1,85 +1,114 @@
-'use client';
+import { createClient } from "next-sanity";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-import { useEffect, useState } from 'react';
-import { createClient } from 'next-sanity';
-import Link from 'next/link';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
+type Post = {
+  title: string;
+  seoTitle?: string;
+  excerpt?: string;
+  slug: string;
+  imageUrl?: string;
+  publishedAt: string;
+};
 
-// Initialize the client
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: 'production',
-  apiVersion: '2026-05-20',
-  useCdn: false,
-});
+async function getPosts(): Promise<Post[]> {
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return [];
 
-export default function BlogPage() {
-  const [posts, setPosts] = useState<any[]>([]);
+  const client = createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+    apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2026-05-20",
+    useCdn: true,
+  });
 
-  useEffect(() => {
-    // Fetch posts from Sanity with slug included
-    const query = `*[_type == "post"]{
-      title,
-      seoTitle,
-      excerpt,
-      "slug": slug.current,
-      "imageUrl": mainImage.asset->url,
-      publishedAt
-    }`;
+  try {
+    return (
+      (await client.fetch(
+        `*[_type == "post"] | order(publishedAt desc){
+          title,
+          seoTitle,
+          excerpt,
+          "slug": slug.current,
+          "imageUrl": mainImage.asset->url,
+          publishedAt
+        }`,
+      )) || []
+    );
+  } catch {
+    return [];
+  }
+}
 
-    client.fetch(query).then((data) => {
-      setPosts(data);
-    });
-  }, []);
+export default async function BlogPage() {
+  const posts = await getPosts();
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-sky">
       <Navbar />
-      
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-12 text-center"
-        >
-          <h1 className="text-5xl font-black text-[#560591] tracking-tight">Travel Insights</h1>
-          <p className="mt-4 text-lg text-slate-600">Stories, tips, and global travel news from AeroSwift.</p>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {posts.length === 0 ? (
-            <div className="col-span-full py-20 text-center bg-white rounded-3xl border border-slate-100 shadow-sm">
-                <p className="text-slate-500 font-medium">No blog posts yet. Add some in your /studio!</p>
-            </div>
-          ) : (
-             posts.map((post, index) => (
-               <div key={index} className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm flex flex-col h-full">
-                 {post.imageUrl && (
-                   <img src={post.imageUrl} alt={post.seoTitle || post.title} className="w-full h-48 object-cover" />
-                 )}
-                 <div className="p-6 flex-grow flex flex-col">
-                   <h2 className="text-xl font-bold text-[#560591]">{post.seoTitle || post.title}</h2>
-                   <p className="text-sm text-slate-500 mt-1">{new Date(post.publishedAt).toLocaleDateString()}</p>
-                   {post.excerpt && <p className="text-slate-600 mt-4 text-sm leading-relaxed mb-6">{post.excerpt}</p>}
-                   
-                   <div className="mt-auto">
-                     <Link href={`/blog/${post.slug}`} className="text-[#560591] font-semibold text-sm hover:underline flex items-center">
-                       Read Article →
-                     </Link>
-                   </div>
-                 </div>
-               </div>
-             ))
-          )}
-        </motion.div>
+      <section className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+        <div className="mb-12">
+          <p className="section-label mb-3">Journal</p>
+          <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight text-ink">
+            Travel insights
+          </h1>
+          <p className="mt-4 text-lg text-ink/60">
+            Tips, routes, and weekend ideas for flying from the UK.
+          </p>
+        </div>
+
+        {posts.length === 0 ? (
+          <div className="py-16 text-center border-y border-mist">
+            <p className="text-ink/50">
+              No posts yet. Add articles in{" "}
+              <Link href="/studio" className="text-accent font-semibold">
+                /studio
+              </Link>
+              .
+            </p>
+          </div>
+        ) : (
+          <ul className="divide-y divide-mist border-y border-mist">
+            {posts.map((post) => (
+              <li key={post.slug}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="flex flex-col sm:flex-row gap-5 py-8 group"
+                >
+                  {post.imageUrl && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={post.imageUrl}
+                      alt=""
+                      className="w-full sm:w-40 h-28 object-cover rounded-lg shrink-0"
+                    />
+                  )}
+                  <div>
+                    <p className="text-xs text-ink/40 mb-1">
+                      {new Date(post.publishedAt).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </p>
+                    <h2 className="font-display text-xl font-semibold text-ink group-hover:text-accent transition-colors">
+                      {post.seoTitle || post.title}
+                    </h2>
+                    {post.excerpt && (
+                      <p className="text-sm text-ink/55 mt-2 leading-relaxed line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    <p className="text-sm font-semibold text-accent mt-3">
+                      Read article →
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <Footer />

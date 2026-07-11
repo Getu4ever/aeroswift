@@ -1,86 +1,87 @@
-'use client';
+"use client";
 
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
+import { getSupportEmail } from "@/lib/site";
+
+const faqs = [
+  {
+    q: "Where is my booking confirmation?",
+    a: "Your booking is handled by the airline or agency you chose. Check your email (including spam) for confirmation from them — not from AeroSwift.",
+  },
+  {
+    q: "How do I change or cancel a flight?",
+    a: "Contact the airline or booking agency directly with your booking reference. We can’t change tickets on your behalf.",
+  },
+  {
+    q: "How does AeroSwift work?",
+    a: "We help you compare flight options. When you click Book, you go to a partner site to pay. We may earn a commission if you book — at no extra cost to you.",
+  },
+  {
+    q: "Need site help?",
+    a: "Email us for website or partnership questions. For booking problems, always contact the partner who issued your ticket.",
+  },
+];
 
 export default function SupportPage() {
+  const supportEmail = getSupportEmail();
+
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-sky">
       <Navbar />
 
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+      <section className="py-16 md:py-20 px-6">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-5xl font-black mb-6 tracking-tight">How can we help?</h1>
-            <p className="text-xl text-slate-600">Everything you need to know about your travel experience with AeroSwift.</p>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid md:grid-cols-2 gap-8 mb-16"
+            className="mb-14"
           >
-            {/* FAQ Item 1 */}
-            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-3">Where is my booking confirmation?</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Since AeroSwift is a flight search engine, your booking is handled directly by the airline or travel agency you selected. Please check your email inbox (including the spam/junk folder) for the confirmation sent by them.
-              </p>
-            </div>
+            <p className="section-label mb-3">Help</p>
+            <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight text-ink">
+              Support
+            </h1>
+            <p className="mt-4 text-lg text-ink/60">
+              Quick answers about searching and booking with AeroSwift.
+            </p>
+          </motion.div>
 
-            {/* FAQ Item 2 */}
-            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-3">How do I change my flight?</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Any changes to your itinerary, such as date changes or cancellations, must be managed through the airline or booking agency's website directly. Have your booking reference number ready.
-              </p>
-            </div>
-
-            {/* FAQ Item 3 */}
-            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-3">How does AeroSwift work?</h3>
-              <p className="text-slate-600 leading-relaxed">
-                We compare millions of flight routes to help you find the best prices. When you click "Book," we securely redirect you to our trusted partners to complete the transaction.
-              </p>
-            </div>
-
-            {/* FAQ Item 4 */}
-            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-3">Need more assistance?</h3>
-              <p className="text-slate-600 mb-4 leading-relaxed">
-                For partnerships or site-specific issues, our team is happy to help you via email.
-              </p>
-              <a 
-                href="mailto:support@aeroswift.com" 
-                className="text-brand-indigo font-bold hover:underline"
+          <div className="divide-y divide-mist border-y border-mist mb-14">
+            {faqs.map((item, i) => (
+              <motion.div
+                key={item.q}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="py-8"
               >
-                support@aeroswift.com
-              </a>
-            </div>
-          </motion.div>
+                <h2 className="text-lg font-semibold text-ink mb-2">{item.q}</h2>
+                <p className="text-ink/65 leading-relaxed">{item.a}</p>
+                {item.q === "Need site help?" && (
+                  <a
+                    href={`mailto:${supportEmail}`}
+                    className="inline-block mt-3 text-accent font-semibold hover:underline"
+                  >
+                    {supportEmail}
+                  </a>
+                )}
+              </motion.div>
+            ))}
+          </div>
 
-          {/* Bottom CTA - Updated background color for better balance */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="bg-slate-900 rounded-3xl p-10 text-center text-white"
-          >
-            <h3 className="text-2xl font-bold mb-3">Still can't find what you're looking for?</h3>
-            <p className="text-slate-400 mb-6">Our dedicated support team usually replies within 24 hours.</p>
-            <a href="mailto:support@aeroswift.com" className="inline-block px-8 py-3 bg-white text-slate-900 font-bold rounded-full hover:bg-slate-100 transition">
-              Contact Support
+          <div className="bg-ink text-white rounded-xl p-8 md:p-10 text-center">
+            <h3 className="font-display text-2xl font-semibold mb-2">
+              Still stuck?
+            </h3>
+            <p className="text-white/60 mb-6 text-sm">
+              We usually reply within 24 hours for site-related questions.
+            </p>
+            <a href={`mailto:${supportEmail}`} className="btn-primary">
+              Email support
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 

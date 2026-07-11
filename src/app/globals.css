@@ -1,12 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-indigo: #560591;
+  --color-ink: #0b1f33;
+  --color-ink-soft: #16324a;
+  --color-accent: #0d9488;
+  --color-accent-dark: #0f766e;
+  --color-sky: #f0f7fa;
+  --color-sky-deep: #d9eef5;
+  --color-spark: #e8c547;
+  --color-mist: #e8eef2;
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer utilities {
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 @tailwind base;
@@ -14,11 +28,33 @@
 @tailwind utilities;
 
 @layer base {
-  h1 {
-    color: var(--color-brand-indigo);
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: var(--color-sky);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
   }
 }
-html, body {
-  overflow-x: hidden;
-  width: 100%;
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-5 py-2.5 bg-accent text-white text-sm font-semibold rounded-md hover:bg-accent-dark transition-colors active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-5 py-2.5 bg-white/15 text-white text-sm font-semibold rounded-md hover:bg-white/25 transition-colors border border-white/25;
+  }
+
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-accent;
+  }
 }

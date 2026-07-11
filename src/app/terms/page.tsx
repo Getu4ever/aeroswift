@@ -1,46 +1,94 @@
-'use client';
+"use client";
 
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
+import { getSupportEmail } from "@/lib/site";
 
 export default function TermsOfService() {
+  const supportEmail = getSupportEmail();
+
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-sky">
       <Navbar />
-      
-      <article className="max-w-4xl mx-auto py-20 px-6">
+
+      <article className="max-w-3xl mx-auto py-16 md:py-20 px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl font-black mb-8" style={{ color: '#560591' }}>Terms of Service</h1>
+          <p className="section-label mb-3">Legal</p>
+          <h1 className="font-display text-4xl font-semibold mb-8 text-ink">
+            Terms of Service
+          </h1>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="prose prose-slate max-w-none text-slate-700 leading-relaxed"
-        >
-          <p><strong>Last Updated: May 21, 2026</strong></p>
-          <p>By accessing AeroSwift, you agree to comply with these terms. If you do not agree, please discontinue use of this service immediately.</p>
-          
-          <h2 className="text-2xl font-bold mt-8 mb-4 text-slate-900">1. Scope of Service</h2>
-          <p>AeroSwift is a travel search engine. We do not act as a travel agent, carrier, or booking operator. We provide real-time information sourced from third-party travel providers.</p>
-          
-          <h2 className="text-2xl font-bold mt-8 mb-4 text-slate-900">2. Limitation of Liability</h2>
-          <p>All flight prices, availability, and scheduling details are provided by third-party vendors. AeroSwift does not guarantee the accuracy of this data. Any issues regarding booking, ticketing, refunds, or cancellations must be addressed directly with the relevant airline or agency.</p>
-          
-          <h2 className="text-2xl font-bold mt-8 mb-4 text-slate-900">3. User Obligations</h2>
-          <p>You agree to use this site for personal, non-commercial purposes only. Automated scraping, data mining, or any attempt to compromise the integrity of our infrastructure is strictly prohibited.</p>
-          
-          <h2 className="text-2xl font-bold mt-8 mb-4 text-slate-900">4. Intellectual Property</h2>
-          <p>All content, branding, and design elements on AeroSwift are the property of AeroSwift and protected by international copyright law.</p>
-        </motion.div>
+        <div className="space-y-8 text-ink/70 leading-relaxed">
+          <p>
+            <strong className="text-ink">Last updated: 11 July 2026</strong>
+          </p>
+          <p>
+            By using AeroSwift (aeroswift.co.uk), you agree to these terms.
+          </p>
+
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-ink mb-3">
+              1. What we offer
+            </h2>
+            <p>
+              AeroSwift is a flight comparison website. We are not a travel
+              agent, carrier, or booking operator. Bookings and payments happen
+              on third-party partner sites.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-ink mb-3">
+              2. Affiliate disclosure
+            </h2>
+            <p>
+              Some links are affiliate links. We may earn a commission if you
+              book, at no extra cost to you. Displayed prices are indicative.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-ink mb-3">
+              3. Liability
+            </h2>
+            <p>
+              We do not guarantee accuracy of partner prices or schedules.
+              Ticketing, refunds, and changes are between you and the partner.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-ink mb-3">
+              4. Acceptable use
+            </h2>
+            <p>
+              Use the site for personal, non-commercial purposes. Scraping or
+              attacking the site is prohibited.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-ink mb-3">
+              5. Contact
+            </h2>
+            <p>
+              <a
+                href={`mailto:${supportEmail}`}
+                className="text-accent font-semibold hover:underline"
+              >
+                {supportEmail}
+              </a>
+            </p>
+          </section>
+        </div>
       </article>
-      
+
       <Footer />
     </main>
   );

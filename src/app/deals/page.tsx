@@ -1,87 +1,77 @@
-'use client';
+"use client";
 
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
-import Image from 'next/image'; // 1. Import Image component
-
-const deals = [
-  { 
-    destination: "Paris", 
-    price: "From £25", 
-    route: "LON-PAR", 
-    tag: "City Break", 
-    link: "https://aviasales.tpo.li/Ntu6rPsQ",
-    image: "/images/paris.jpg" 
-  },
-  { 
-    destination: "New York", 
-    price: "From £215", 
-    route: "LON-NYC", 
-    tag: "Trending", 
-    link: "https://aviasales.tpo.li/85qnfAxa",
-    image: "/images/ny.jpg" 
-  },
-  { 
-    destination: "Dubai", 
-    price: "From £177", 
-    route: "LON-DXB", 
-    tag: "Luxury", 
-    link: "https://aviasales.tpo.li/niRfQlyF",
-    image: "/images/dubai.jpg" 
-  },
-];
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { deals } from "@/lib/destinations";
 
 export default function DealsPage() {
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-sky">
       <Navbar />
-      
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+
+      <section className="max-w-7xl mx-auto px-6 py-16 md:py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-12"
+          transition={{ duration: 0.6 }}
+          className="mb-12 max-w-2xl"
         >
-          <h1 className="text-5xl font-black tracking-tight">Exclusive Deals</h1>
-          <p className="mt-4 text-lg text-slate-600">Hand-picked fares updated daily. Book before they're gone!</p>
+          <p className="section-label mb-3">Value</p>
+          <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight text-ink">
+            Flight deals
+          </h1>
+          <p className="mt-4 text-lg text-ink/60">
+            Hand-picked routes from the UK. Fares are indicative — always
+            confirm the live price on the partner site.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="space-y-0 divide-y divide-mist border-y border-mist">
           {deals.map((deal, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all overflow-hidden"
+            <motion.article
+              key={deal.destination}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="grid md:grid-cols-[200px_1fr_auto] gap-6 py-8 items-center"
             >
-              {/* 2. Optimized Image Container */}
-              <div className="h-48 w-full relative bg-slate-200 animate-pulse">
-                <Image 
-                  src={deal.image} 
-                  alt={deal.destination} 
+              <div className="relative h-36 md:h-28 w-full rounded-lg overflow-hidden bg-mist">
+                <Image
+                  src={deal.image}
+                  alt={deal.destination}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="200px"
                   className="object-cover"
                 />
               </div>
-              <div className="p-8">
-                <span className="text-xs font-bold text-[#560591] uppercase tracking-wider">{deal.tag}</span>
-                <h2 className="text-2xl font-black text-slate-900 mt-2">{deal.destination}</h2>
-                <p className="text-slate-500 mb-6">{deal.route}</p>
-                <div className="text-4xl font-black text-slate-900 mb-6">{deal.price}</div>
-                <a 
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+                  {deal.tag}
+                </p>
+                <h2 className="font-display text-2xl font-semibold text-ink mt-1">
+                  {deal.destination}
+                </h2>
+                <p className="text-sm text-ink/50 mt-1">{deal.route}</p>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-col items-start sm:items-center md:items-end gap-3">
+                <div className="text-right">
+                  <p className="font-display text-3xl font-semibold text-ink">
+                    {deal.price}
+                  </p>
+                  <p className="text-xs text-ink/40 mt-1">Indicative fare</p>
+                </div>
+                <a
                   href={deal.link}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full py-3 bg-[#560591] text-white text-center font-bold rounded-full hover:bg-indigo-800 transition active:scale-[0.98]"
+                  rel="noopener noreferrer sponsored"
+                  className="btn-primary whitespace-nowrap"
                 >
-                  Book Flight
+                  Book flight
                 </a>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </section>

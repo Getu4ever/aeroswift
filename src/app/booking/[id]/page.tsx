@@ -1,11 +1,12 @@
-// src/app/booking/[id]/page.tsx
-import BookingContent from '@/components/BookingContent';
+import { redirect } from "next/navigation";
+import { getAffiliateHomeLink } from "@/lib/affiliate";
 
-// This function tells Next.js how to pre-render the dynamic route at build time.
-export async function generateStaticParams() {
-  return [{ id: '1' }];
-}
-
-export default function Page() {
-  return <BookingContent />;
+/** Legacy booking URLs redirect to our affiliate partner. */
+export default async function BookingPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  await params;
+  redirect(getAffiliateHomeLink());
 }

@@ -1,37 +1,36 @@
-'use client';
+"use client";
 
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import DestinationGrid from '@/components/DestinationGrid';
-import { motion } from 'framer-motion';
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import DestinationGrid from "@/components/DestinationGrid";
+import { motion } from "framer-motion";
 
 export default function DestinationsPage() {
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-sky">
       <Navbar />
-      
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-12"
-        >
-          {/* h1 color is now handled by your global CSS */}
-          <h1 className="text-5xl font-black tracking-tight">Top Destinations</h1>
-          <p className="mt-4 text-lg text-slate-600">Handpicked locations for your next unforgettable journey.</p>
-        </motion.div>
-        
+
+      <section className="max-w-7xl mx-auto px-6 py-16 md:py-20">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 max-w-2xl"
         >
-          {/* Ensure your DestinationGrid component is using the same 
-            onSelect handler logic as the home page to maintain 
-            affiliate tracking consistency:
-            onSelect={(city) => window.location.href = `...&marker=730324`}
-          */}
+          <p className="section-label mb-3">Explore</p>
+          <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight text-ink">
+            Top destinations
+          </h1>
+          <p className="mt-4 text-lg text-ink/60">
+            Pick a city and search live fares with our partners — prices in £.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <DestinationGrid />
         </motion.div>
       </section>

@@ -1,71 +1,84 @@
-// src/components/PopularDestinations.tsx
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { popularDestinations } from "@/lib/destinations";
 
-const initialDestinations = [
-  { name: 'Paris', img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=400' },
-  { name: 'Barcelona', img: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&q=80&w=400' },
-  { name: 'Amsterdam', img: 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&q=80&w=400' },
-  { name: 'Santorini', img: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&q=80&w=400' },
-  { name: 'Berlin', img: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&q=80&w=400' },
-  { name: 'London', img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=400' },
-];
-
-export default function PopularDestinations({ onSelect }: { onSelect: (city: string) => void }) {
-  const [destinations, setDestinations] = useState(initialDestinations.map(d => ({ ...d, price: '...' })));
+export default function PopularDestinations({
+  onSelect,
+}: {
+  onSelect: (destinationIata: string) => void;
+}) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setDestinations(prev => prev.map(d => ({ ...d, price: `$${Math.floor(Math.random() * 300) + 100}` })));
-  }, []);
-
-  const scroll = (direction: 'left' | 'right') => {
-    scrollRef.current?.scrollBy({ left: direction === 'left' ? -300 : 300, behavior: 'smooth' });
+  const scroll = (direction: "left" | "right") => {
+    scrollRef.current?.scrollBy({
+      left: direction === "left" ? -300 : 300,
+      behavior: "smooth",
+    });
   };
 
   return (
-    <div className="w-full relative py-12">
-      <div className="flex justify-between items-end mb-8">
-        <div>
-          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Popular Destinations</h2>
-          <p className="text-slate-500 mt-1 font-medium italic">Hand-picked European getaways</p>
+    <section className="w-full relative py-16 md:py-20 px-6 bg-sky">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-end mb-10 gap-4">
+          <div>
+            <p className="section-label mb-3">Get inspired</p>
+            <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink tracking-tight">
+              Popular destinations
+            </h2>
+            <p className="text-ink/55 mt-2 text-sm md:text-base">
+              European getaways from UK airports
+            </p>
+          </div>
+
+          <div className="flex gap-2 shrink-0">
+            {(["left", "right"] as const).map((dir) => (
+              <button
+                key={dir}
+                type="button"
+                onClick={() => scroll(dir)}
+                aria-label={`Scroll ${dir}`}
+                className="p-2.5 border border-mist bg-white hover:border-accent hover:text-accent text-ink/60 rounded-md transition-colors"
+              >
+                {dir === "left" ? "←" : "→"}
+              </button>
+            ))}
+          </div>
         </div>
-        
-        <div className="flex gap-2">
-          {['left', 'right'].map((dir) => (
-            <button 
-              key={dir}
-              onClick={() => scroll(dir as 'left' | 'right')} 
-              className="p-3 bg-slate-100 hover:bg-[#560591] hover:text-white text-slate-600 rounded-full transition-all duration-300"
+
+        <div
+          ref={scrollRef}
+          className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-2"
+        >
+          {popularDestinations.map((dest, index) => (
+            <motion.button
+              key={dest.name}
+              type="button"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.06 }}
+              onClick={() => onSelect(dest.code)}
+              className="flex-none w-60 sm:w-64 group relative overflow-hidden rounded-lg h-72 text-left"
             >
-              {dir === 'left' ? '←' : '→'}
-            </button>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={dest.img}
+                alt={dest.name}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5">
+                <h3 className="font-display text-xl font-semibold text-white">
+                  {dest.name}
+                </h3>
+                <p className="text-white/70 text-sm mt-1">Search flights →</p>
+              </div>
+            </motion.button>
           ))}
         </div>
       </div>
-      
-      <div ref={scrollRef} className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-4">
-        {destinations.map((dest, index) => (
-          <motion.button 
-            key={dest.name}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            onClick={() => onSelect(dest.name)}
-            className="flex-none w-64 group relative overflow-hidden rounded-3xl h-80 shadow-lg"
-          >
-            <img src={dest.img} alt={dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-            <div className="absolute bottom-6 left-6 text-left">
-              <h3 className="text-xl font-bold text-white">{dest.name}</h3>
-              <p className="text-white/80 text-sm font-medium">from {dest.price}</p>
-            </div>
-          </motion.button>
-        ))}
-      </div>
-    </div>
+    </section>
   );
 }

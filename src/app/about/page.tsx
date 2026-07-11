@@ -1,93 +1,92 @@
-'use client';
+"use client";
 
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ABOUT_HERO_IMAGE } from "@/lib/destinations";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-sky">
       <Navbar />
-      
-      <section className="max-w-4xl mx-auto px-6 py-16">
-        {/* Header Animation */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+
+      <section className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-8 text-center"
+          transition={{ duration: 0.6 }}
+          className="mb-10"
         >
-          {/* h1 now automatically picks up the brand-indigo color from globals.css */}
-          <h1 className="text-5xl font-black tracking-tight">About AeroSwift</h1>
-          <p className="mt-4 text-lg text-slate-600">
-            Redefining the global travel search experience through transparency and innovation.
+          <p className="section-label mb-3">Our story</p>
+          <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight text-ink">
+            About AeroSwift
+          </h1>
+          <p className="mt-4 text-lg text-ink/60">
+            A UK flight comparison site built for clear search and honest
+            booking redirects.
           </p>
         </motion.div>
 
-        {/* Hero Image Container */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="mb-12 relative h-64 md:h-96 w-full rounded-3xl overflow-hidden shadow-xl"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-12 relative h-56 md:h-80 w-full rounded-lg overflow-hidden"
         >
-          <Image 
-            src="/images/about-hero.jpg" 
-            alt="AeroSwift Global Travel" 
+          <Image
+            src={ABOUT_HERO_IMAGE}
+            alt="Airport terminal windows at dusk"
             fill
             className="object-cover"
             priority
+            sizes="(max-width: 768px) 100vw, 768px"
           />
         </motion.div>
 
-        {/* Content Animation */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-          className="bg-white p-10 md:p-16 rounded-3xl border border-slate-100 shadow-sm space-y-12"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="space-y-10 text-ink/70 leading-relaxed"
         >
-          {/* Mission Section */}
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-slate-900">Our Mission: Simplifying Global Travel</h2>
-            <p className="text-slate-600 leading-relaxed">
-              At AeroSwift, we believe that exploring the world should be accessible, transparent, and seamless for everyone. 
-              Our mission is to empower modern travelers by providing the most comprehensive, 
-              <strong> global flight search experience</strong>. By aggregating flight data from hundreds of airlines, 
-              we help you navigate the globe with confidence, ensuring you find the best value for your journey.
+          <div>
+            <h2 className="font-display text-2xl font-semibold text-ink mb-3">
+              Why we exist
+            </h2>
+            <p>
+              Booking flights shouldn&apos;t feel like decoding fine print.
+              AeroSwift helps UK travellers compare routes and fares, then
+              connects you to trusted partners to finish the booking.
             </p>
           </div>
 
-          {/* Innovation Section */}
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-slate-900">Why Choose AeroSwift?</h2>
-            <p className="text-slate-600 leading-relaxed">
-              In an industry often clouded by hidden fees and complex booking engines, AeroSwift stands for 
-              <strong> travel transparency</strong>. Our platform is engineered to surface the most accurate 
-              flight availability and pricing, reducing the friction of travel planning. Whether you are 
-              searching for a budget-friendly weekend getaway in Europe or planning a complex 
-              international multi-city expedition, our intelligent search technology is built to handle it all.
+          <div>
+            <h2 className="font-display text-2xl font-semibold text-ink mb-3">
+              How we make money
+            </h2>
+            <p>
+              AeroSwift is free to use. When you book through a partner link, we
+              may earn a commission. That does not increase what you pay. We are
+              not a travel agent or airline — tickets and support come from the
+              partner you book with.
             </p>
           </div>
 
-          {/* Scaling Section */}
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-slate-900">Built for a Borderless World</h2>
-            <p className="text-slate-600 leading-relaxed">
-              Founded in the United Kingdom, AeroSwift is rapidly scaling to become a premier 
-              <strong> international travel platform</strong>. We are committed to evolving alongside 
-              our users, consistently integrating new features and expanding our partner network to ensure 
-              that no matter where you are or where you are going, your next journey is just a few clicks away.
+          <div>
+            <h2 className="font-display text-2xl font-semibold text-ink mb-3">
+              Built in the UK
+            </h2>
+            <p>
+              We focus on departures from the UK, prices in pounds, and routes
+              people actually fly — weekend city breaks, winter sun, and the
+              odd long-haul adventure.{" "}
+              <Link href="/how-it-works" className="text-accent font-semibold hover:underline">
+                See how it works
+              </Link>
+              .
             </p>
-          </div>
-
-          {/* Footer Commitment */}
-          <div className="pt-8 border-t border-slate-100">
-             <h4 className="font-bold text-slate-900 mb-2">Our Core Values</h4>
-             <p className="text-sm font-medium text-brand-indigo">
-               Innovation • User-First Design • Global Reach • Unmatched Transparency
-             </p>
           </div>
         </motion.div>
       </section>
