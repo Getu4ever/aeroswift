@@ -104,35 +104,90 @@ export const popularDestinations = [
   },
 ] as const;
 
-export const deals = [
+/** Hand-picked deals — links are built with getAffiliateSearchLink(toCode, fromCode). */
+export type Deal = {
+  destination: string;
+  fromCode: string;
+  toCode: string;
+  price: string;
+  tag: string;
+  image: string;
+};
+
+export const deals: Deal[] = [
   {
     destination: "Paris",
+    fromCode: "LON",
+    toCode: "PAR",
     price: "From £25",
-    route: "LON → PAR",
     tag: "City break",
-    link: "https://aviasales.tpo.li/Ntu6rPsQ",
     image:
       "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800",
   },
   {
+    destination: "Barcelona",
+    fromCode: "LON",
+    toCode: "BCN",
+    price: "From £35",
+    tag: "City break",
+    image:
+      "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    destination: "Amsterdam",
+    fromCode: "LON",
+    toCode: "AMS",
+    price: "From £30",
+    tag: "Weekend",
+    image:
+      "https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    destination: "Lisbon",
+    fromCode: "LON",
+    toCode: "LIS",
+    price: "From £40",
+    tag: "City break",
+    image:
+      "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    destination: "Rome",
+    fromCode: "LON",
+    toCode: "ROM",
+    price: "From £45",
+    tag: "Culture",
+    image:
+      "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    destination: "Malaga",
+    fromCode: "MAN",
+    toCode: "AGP",
+    price: "From £55",
+    tag: "Sun escape",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800",
+  },
+  {
     destination: "New York",
+    fromCode: "LON",
+    toCode: "NYC",
     price: "From £215",
-    route: "LON → NYC",
     tag: "Long haul",
-    link: "https://aviasales.tpo.li/85qnfAxa",
     image:
       "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800",
   },
   {
     destination: "Dubai",
+    fromCode: "LON",
+    toCode: "DXB",
     price: "From £177",
-    route: "LON → DXB",
     tag: "Sun escape",
-    link: "https://aviasales.tpo.li/niRfQlyF",
     image:
       "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800",
   },
-] as const;
+];
 
 /** Destination photos keyed by arrival IATA (for /flights list + guides) */
 export const routeImages: Record<string, string> = {
