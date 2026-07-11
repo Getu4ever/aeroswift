@@ -57,7 +57,7 @@ export const destinations = [
     country: "Indonesia",
     region: "Asia",
     image:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab0?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&q=80&w=800",
   },
 ] as const;
 
