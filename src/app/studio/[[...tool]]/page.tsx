@@ -7,15 +7,20 @@
  * https://github.com/sanity-io/next-sanity
  */
 
-import { NextStudio } from 'next-sanity/studio'
-import config from '../../../../sanity.config'
+import { NextStudio } from "next-sanity/studio";
+import config from "../../../../sanity.config";
 
-// By forcing this to dynamic, we tell Next.js to skip this page during 
+// By forcing this to dynamic, we tell Next.js to skip this page during
 // the static generation process, preventing the missing generateStaticParams error.
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
-export { metadata, viewport } from 'next-sanity/studio'
+export { metadata, viewport } from "next-sanity/studio";
 
-export default function StudioPage() {
-  return <NextStudio config={config} />
+export default async function StudioPage({
+  params,
+}: {
+  params: Promise<{ tool?: string[] }>;
+}) {
+  await params;
+  return <NextStudio config={config} />;
 }
