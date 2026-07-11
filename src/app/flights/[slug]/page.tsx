@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { getAffiliateSearchLink } from "@/lib/affiliate";
-import { ukRoutes } from "@/lib/destinations";
+import { getRouteImage, ukRoutes } from "@/lib/destinations";
 import { getRouteBySlug } from "@/lib/routes";
 import {
   breadcrumbJsonLd,
@@ -44,6 +45,7 @@ export default async function FlightRoutePage({ params }: Props) {
 
   const searchHref = getAffiliateSearchLink(route.toCode, route.fromCode);
   const related = ukRoutes.filter((r) => r.slug !== route.slug).slice(0, 4);
+  const image = getRouteImage(route.toCode);
 
   const faqs = [
     {
@@ -93,9 +95,21 @@ export default async function FlightRoutePage({ params }: Props) {
           </span>
         </nav>
 
-        <p className="section-label mb-3">
-          {route.fromCode} → {route.toCode}
-        </p>
+        <div className="relative h-52 md:h-64 w-full rounded-lg overflow-hidden mb-10 bg-mist">
+          <Image
+            src={image}
+            alt={route.to}
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 768px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+          <p className="absolute bottom-4 left-4 text-xs font-semibold tracking-wider text-white/80 uppercase">
+            {route.fromCode} → {route.toCode}
+          </p>
+        </div>
+
         <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight text-ink">
           Cheap flights from {route.from} to {route.to}
         </h1>
@@ -163,12 +177,23 @@ export default async function FlightRoutePage({ params }: Props) {
               <li key={r.slug}>
                 <Link
                   href={`/flights/${r.slug}`}
-                  className="flex justify-between items-center gap-4 py-4 group"
+                  className="flex gap-4 items-center py-4 group"
                 >
+                  <div className="relative w-16 h-12 rounded-md overflow-hidden bg-mist shrink-0">
+                    <Image
+                      src={getRouteImage(r.toCode)}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="64px"
+                    />
+                  </div>
                   <span className="font-semibold text-ink group-hover:text-accent transition-colors">
                     {r.from} → {r.to}
                   </span>
-                  <span className="text-sm text-accent shrink-0">View →</span>
+                  <span className="text-sm text-accent shrink-0 ml-auto">
+                    View →
+                  </span>
                 </Link>
               </li>
             ))}
