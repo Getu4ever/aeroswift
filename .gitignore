@@ -2,3 +2,8 @@ node_modules
 .next
 out
 .env.local
+
+# Google Cloud service account keys (never commit)
+*-credentials.json
+*service-account*.json
+getu-uk-site-*.json

@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@google-analytics/data": "^6.1.0",
     "@sanity/client": "^7.22.0",
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^2.1.1",

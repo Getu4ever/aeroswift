@@ -3,6 +3,7 @@ import { DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
 import Analytics from "@/components/Analytics";
+import TravelpayoutsDrive from "@/components/TravelpayoutsDrive";
 import JsonLd from "@/components/JsonLd";
 import { getSiteUrl } from "@/lib/site";
 import { absoluteUrl, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -97,6 +98,7 @@ export default function RootLayout({
         {children}
         <CookieConsent />
         <Analytics />
+        <TravelpayoutsDrive />
       </body>
     </html>
   );
