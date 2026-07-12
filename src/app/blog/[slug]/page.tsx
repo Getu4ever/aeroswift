@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import ArticleActions from "@/components/ArticleActions";
 import styles from "./blog.module.css";
-import { buildPageMetadata } from "@/lib/seo";
+import { absoluteUrl, buildPageMetadata } from "@/lib/seo";
 
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -76,7 +76,7 @@ export default async function BlogPostPage({
     author: post.author?.name
       ? { "@type": "Person", name: post.author.name }
       : undefined,
-    mainEntityOfPage: `https://aeroswift.co.uk/blog/${slug}/`,
+    mainEntityOfPage: absoluteUrl(`/blog/${slug}`),
   };
 
   return (

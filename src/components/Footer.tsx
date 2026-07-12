@@ -28,9 +28,9 @@ export default function Footer() {
 
           <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
-              <h4 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">
+              <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">
                 Explore
-              </h4>
+              </p>
               <ul className="space-y-3 text-sm text-white/80">
                 <li>
                   <Link href="/flights" className="hover:text-white transition">
@@ -62,9 +62,9 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">
+              <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">
                 Company
-              </h4>
+              </p>
               <ul className="space-y-3 text-sm text-white/80">
                 <li>
                   <Link href="/about" className="hover:text-white transition">
@@ -85,9 +85,9 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">
+              <p className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">
                 Legal
-              </h4>
+              </p>
               <ul className="space-y-3 text-sm text-white/80">
                 <li>
                   <Link href="/privacy" className="hover:text-white transition">

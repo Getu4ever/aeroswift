@@ -11,7 +11,7 @@ export default function HomeHero() {
     <section className="relative min-h-[100svh] flex flex-col text-white overflow-hidden">
       <Image
         src={HERO_IMAGE}
-        alt=""
+        alt="Airplane wing above clouds on a UK flight"
         fill
         priority
         className="object-cover object-center"
@@ -24,14 +24,14 @@ export default function HomeHero() {
 
       <div className="relative z-10 flex-1 flex flex-col justify-center px-4 md:px-6 pb-16 pt-28">
         <div className="max-w-4xl mx-auto w-full text-center">
-          <motion.p
+          <motion.h1
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white mb-5"
           >
             Aero<span className="text-spark">Swift</span>
-          </motion.p>
+          </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 12 }}

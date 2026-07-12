@@ -103,7 +103,7 @@ export default function FlightsPageContent() {
         <div className="absolute inset-0">
           <Image
             src={FLIGHTS_HERO_IMAGE}
-            alt=""
+            alt="Airplane cabin aisle looking toward the cockpit"
             fill
             priority
             className="object-cover object-[center_40%] opacity-50"
