@@ -4,6 +4,7 @@ import HomeHero from "@/components/HomeHero";
 import HowItWorksStrip from "@/components/HowItWorksStrip";
 import PopularDestinations from "@/components/PopularDestinations";
 import RoutesTeaser from "@/components/RoutesTeaser";
+import HomeEditorial from "@/components/HomeEditorial";
 import Footer from "@/components/Footer";
 import { getAffiliateSearchLink } from "@/lib/affiliate";
 
@@ -18,6 +19,7 @@ export default function HomePageContent() {
         }}
       />
       <RoutesTeaser />
+      <HomeEditorial />
       <Footer />
     </main>
   );

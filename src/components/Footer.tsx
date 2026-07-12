@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getSupportEmail } from "@/lib/site";
+import SocialShare from "@/components/SocialShare";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -24,6 +25,7 @@ export default function Footer() {
               We may earn a commission when you book through partner links, at
               no extra cost to you. AeroSwift is not a travel agent or airline.
             </p>
+            <SocialShare className="mt-8" />
           </div>
 
           <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">

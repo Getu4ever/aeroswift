@@ -28,19 +28,15 @@ export default function HomeHero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white mb-5"
+            className="mb-5"
           >
-            Aero<span className="text-spark">Swift</span>
+            <span className="block font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white">
+              Aero<span className="text-spark">Swift</span>
+            </span>
+            <span className="mt-5 block text-lg md:text-xl font-sans font-medium text-white/85 max-w-xl mx-auto">
+              Cheap flights from the UK, compared in seconds.
+            </span>
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-lg md:text-xl text-white/85 max-w-xl mx-auto mb-3 font-medium"
-          >
-            Cheap flights from the UK, compared in seconds.
-          </motion.p>
 
           <motion.p
             initial={{ opacity: 0 }}
