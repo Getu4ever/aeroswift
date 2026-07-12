@@ -2,13 +2,28 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import AviasalesSearch from "@/components/AviasalesSearch";
 import { HERO_IMAGE } from "@/lib/destinations";
 
+const HERO_VIDEO = "/video/hero-video.mp4";
+
 export default function HomeHero() {
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduceMotion(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
   return (
     <section className="relative min-h-[100svh] flex flex-col text-white overflow-hidden">
+      {/* Still frame paints immediately; video fades in over it when ready */}
       <Image
         src={HERO_IMAGE}
         alt="Airplane wing above clouds on a UK flight"
@@ -17,8 +32,26 @@ export default function HomeHero() {
         className="object-cover object-center"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/55 to-ink/85" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_0%,_rgba(11,31,51,0.35)_70%)]" />
+
+      {!reduceMotion && (
+        <video
+          className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          onCanPlay={() => setVideoReady(true)}
+        >
+          <source src={HERO_VIDEO} type="video/mp4" />
+        </video>
+      )}
+
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/55 to-ink/85" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_0%,_rgba(11,31,51,0.4)_70%)]" />
 
       <Navbar variant="overlay" />
 
