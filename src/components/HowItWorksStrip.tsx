@@ -4,17 +4,17 @@ const steps = [
   {
     n: "01",
     title: "Search",
-    body: "Enter where you’re flying from and to. We show options from our partners in pounds.",
+    body: "Enter UK departure and destination cities. AeroSwift shows partner options for cheap flights from the UK in pounds.",
   },
   {
     n: "02",
     title: "Compare",
-    body: "Check times, stops, and fares side by side — no account required.",
+    body: "Fares, times, and stops are compared in seconds — side by side, with no account required.",
   },
   {
     n: "03",
     title: "Book with a partner",
-    body: "Complete payment on the airline or agency site. They handle your ticket and support.",
+    body: "Continue on the airline or agency site to pay. They issue your ticket and handle support.",
   },
 ];
 
@@ -28,10 +28,14 @@ export default function HowItWorksStrip() {
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink tracking-tight">
               How AeroSwift works
             </h2>
+            <p className="mt-3 text-ink/60 max-w-xl text-sm md:text-base leading-relaxed">
+              AeroSwift is built so cheap flights from the UK can be found and
+              compared in seconds — then booked with a partner you trust.
+            </p>
           </div>
           <Link
             href="/how-it-works"
-            className="text-sm font-semibold text-accent hover:text-accent-dark transition"
+            className="text-sm font-semibold text-accent hover:text-accent-dark transition shrink-0"
           >
             Full details →
           </Link>

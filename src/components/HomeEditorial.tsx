@@ -10,12 +10,13 @@ export default function HomeEditorial() {
       <div className="max-w-3xl mx-auto">
         <p className="section-label mb-3">For UK travellers</p>
         <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink tracking-tight">
-          Compare cheap flights from the UK
+          Cheap flights from the UK, compared in seconds
         </h2>
         <p className="mt-4 text-lg text-ink/60 leading-relaxed">
           Finding a fair fare should not mean opening ten tabs and guessing which
-          price is real. AeroSwift helps you compare flights from the UK in
-          pounds, then continue booking with a trusted partner.
+          price is real. AeroSwift helps you find cheap flights from the UK and
+          have them compared in seconds — then continue booking with a trusted
+          partner, with prices shown in pounds.
         </p>
 
         <div className="mt-10 space-y-6 text-ink/70 leading-relaxed">
@@ -23,20 +24,21 @@ export default function HomeEditorial() {
             Whether you are planning a weekend in Paris, sun in Spain, or a
             longer trip to New York or Dubai, the same habits save money:
             flexibility on dates, checking more than one London airport, and
-            comparing partners before you pay. We surface options from our
-            affiliate partners so you can see times, stops, and indicative
-            fares in one place — then complete the booking on their site.
+            comparing partners before you pay. AeroSwift surfaces options from
+            our affiliate partners so cheap flights from the UK are easier to
+            spot — times, stops, and indicative fares in one place — then you
+            complete the booking on their site.
           </p>
 
           <h3 className="font-display text-2xl font-semibold text-ink pt-2">
-            Why UK travellers use a comparison site
+            Why UK travellers use AeroSwift
           </h3>
           <p>
             Airlines and online travel agencies often show different fares for
             the same route. Cabin-bag rules, airport choice, and midweek versus
             weekend departures can change the total more than the headline
-            price. A comparison layer helps you spot those differences quickly
-            without committing until you are ready.
+            price. AeroSwift is a comparison layer so those differences are
+            compared in seconds, without committing until you are ready.
           </p>
           <p>
             AeroSwift is built for departures from the UK. We focus on routes
@@ -56,7 +58,7 @@ export default function HomeEditorial() {
             hops, compare Heathrow, Gatwick, Stansted, Luton, and City — and
             from outside London, check Manchester, Birmingham, Edinburgh,
             Glasgow, and Bristol as well. Pack light when cabin-bag-only fares
-            are available; baggage fees wipe out many “deals.”
+            are available; baggage fees wipe out many cheap flights.
           </p>
           <p>
             Always confirm the live price on the partner checkout page.
@@ -91,8 +93,9 @@ export default function HomeEditorial() {
               how booking works
             </Link>{" "}
             if you want the full picture on affiliates and commissions. When
-            you are ready, use the search above to compare live fares and open
-            a partner site to finish your booking.
+            you are ready, use the AeroSwift search above to find cheap flights
+            from the UK, compared in seconds, and open a partner site to finish
+            your booking.
           </p>
         </div>
       </div>
