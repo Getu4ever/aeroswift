@@ -30,7 +30,8 @@ export default function HomeHero() {
             transition={{ duration: 0.6 }}
             className="mb-5"
           >
-            {/* Single text node "AeroSwift" so SEO tools don't split Aero / Swift */}
+            {/* Single text node "AeroSwift" so SEO tools don't split Aero / Swift.
+                Trailing space keeps H1 readable as "AeroSwift Cheap…" when spans are joined. */}
             <span
               className="block font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight bg-clip-text text-transparent"
               style={{
@@ -38,7 +39,7 @@ export default function HomeHero() {
                   "linear-gradient(90deg, #ffffff 0 44%, #e8c547 44% 100%)",
               }}
             >
-              AeroSwift
+              AeroSwift{" "}
             </span>
             <span className="mt-5 block text-lg md:text-xl font-sans font-medium text-white/85 max-w-xl mx-auto">
               Cheap flights from the UK, compared in seconds.
