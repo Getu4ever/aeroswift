@@ -156,6 +156,29 @@ export default async function BlogPostPage({
               listItem: {
                 bullet: ({ children }) => <li className="mb-1">{children}</li>,
               },
+              marks: {
+                link: ({ children, value }) => {
+                  const href = value?.href || "#";
+                  const isInternal =
+                    href.startsWith("/") ||
+                    href.includes("aeroswift.co.uk");
+                  return (
+                    <a
+                      href={href}
+                      className="text-accent font-medium underline underline-offset-2 hover:text-accent-dark"
+                      {...(!isInternal
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                    >
+                      {children}
+                    </a>
+                  );
+                },
+                strong: ({ children }) => (
+                  <strong className="font-semibold text-ink">{children}</strong>
+                ),
+                em: ({ children }) => <em>{children}</em>,
+              },
             }}
           />
         </div>
