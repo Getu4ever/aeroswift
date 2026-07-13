@@ -17,7 +17,7 @@ const client = createClient({
 });
 
 const getPostQuery = `*[_type == "post" && slug.current == $slug][0]{
-  title, seoTitle, excerpt, seoDescription, publishedAt, body, author->{ name },
+  title, seoTitle, excerpt, seoDescription, keywords, publishedAt, body, author->{ name },
   "imageUrl": mainImage.asset->url,
   "related": *[_type == "post" && slug.current != $slug][0...3]{ 
     title, slug, "imageUrl": mainImage.asset->url 
@@ -51,6 +51,7 @@ export async function generateMetadata({
         post.excerpt ||
         "Travel insights from AeroSwift.",
       path: `/blog/${slug}`,
+      keywords: Array.isArray(post.keywords) ? post.keywords : [],
     });
   } catch {
     return { title: "Blog" };
