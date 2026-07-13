@@ -12,8 +12,6 @@ const HERO_VIDEO = "/video/hero-video.mp4";
 export default function HomeHero() {
   const [reduceMotion, setReduceMotion] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
-  // Defer the 15MB hero video so the search widget can use bandwidth first.
-  const [loadVideo, setLoadVideo] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -22,32 +20,6 @@ export default function HomeHero() {
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
   }, []);
-
-  useEffect(() => {
-    if (reduceMotion) return;
-
-    const start = () => setLoadVideo(true);
-    const requestIdle =
-      typeof window !== "undefined" ? window.requestIdleCallback : undefined;
-    const cancelIdle =
-      typeof window !== "undefined" ? window.cancelIdleCallback : undefined;
-
-    let idleId: number | undefined;
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-
-    if (typeof requestIdle === "function") {
-      idleId = requestIdle(start, { timeout: 2500 });
-    } else {
-      timeoutId = setTimeout(start, 1800);
-    }
-
-    return () => {
-      if (idleId != null && typeof cancelIdle === "function") {
-        cancelIdle(idleId);
-      }
-      if (timeoutId != null) clearTimeout(timeoutId);
-    };
-  }, [reduceMotion]);
 
   return (
     <section className="relative min-h-[100svh] flex flex-col text-white overflow-hidden">
@@ -61,7 +33,7 @@ export default function HomeHero() {
         sizes="100vw"
       />
 
-      {!reduceMotion && loadVideo && (
+      {!reduceMotion && (
         <video
           className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ${
             videoReady ? "opacity-100" : "opacity-0"
@@ -70,7 +42,7 @@ export default function HomeHero() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-hidden="true"
           onCanPlay={() => setVideoReady(true)}
         >
@@ -111,10 +83,14 @@ export default function HomeHero() {
             Prices in £ · Depart UK
           </motion.p>
 
-          {/* No entrance delay — search is the primary CTA and must appear ASAP */}
-          <div className="w-full max-w-3xl mx-auto rounded-xl bg-white/95 shadow-2xl shadow-ink/40 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="w-full max-w-3xl mx-auto rounded-xl bg-white/95 shadow-2xl shadow-ink/40 overflow-hidden"
+          >
             <AviasalesSearch />
-          </div>
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0 }}
