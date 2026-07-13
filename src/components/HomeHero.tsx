@@ -25,21 +25,27 @@ export default function HomeHero() {
 
   useEffect(() => {
     if (reduceMotion) return;
-    let idleId: number | undefined;
-    let timeoutId: number | undefined;
 
     const start = () => setLoadVideo(true);
-    if ("requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(start, { timeout: 2500 });
+    const requestIdle =
+      typeof window !== "undefined" ? window.requestIdleCallback : undefined;
+    const cancelIdle =
+      typeof window !== "undefined" ? window.cancelIdleCallback : undefined;
+
+    let idleId: number | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    if (typeof requestIdle === "function") {
+      idleId = requestIdle(start, { timeout: 2500 });
     } else {
-      timeoutId = window.setTimeout(start, 1800);
+      timeoutId = setTimeout(start, 1800);
     }
 
     return () => {
-      if (idleId != null && "cancelIdleCallback" in window) {
-        window.cancelIdleCallback(idleId);
+      if (idleId != null && typeof cancelIdle === "function") {
+        cancelIdle(idleId);
       }
-      if (timeoutId != null) window.clearTimeout(timeoutId);
+      if (timeoutId != null) clearTimeout(timeoutId);
     };
   }, [reduceMotion]);
 
