@@ -12,6 +12,8 @@ const HERO_VIDEO = "/video/hero-video.mp4";
 export default function HomeHero() {
   const [reduceMotion, setReduceMotion] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  // Defer the 15MB hero video so the search widget can use bandwidth first.
+  const [loadVideo, setLoadVideo] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -20,6 +22,26 @@ export default function HomeHero() {
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
   }, []);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    let idleId: number | undefined;
+    let timeoutId: number | undefined;
+
+    const start = () => setLoadVideo(true);
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(start, { timeout: 2500 });
+    } else {
+      timeoutId = window.setTimeout(start, 1800);
+    }
+
+    return () => {
+      if (idleId != null && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId != null) window.clearTimeout(timeoutId);
+    };
+  }, [reduceMotion]);
 
   return (
     <section className="relative min-h-[100svh] flex flex-col text-white overflow-hidden">
@@ -33,7 +55,7 @@ export default function HomeHero() {
         sizes="100vw"
       />
 
-      {!reduceMotion && (
+      {!reduceMotion && loadVideo && (
         <video
           className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ${
             videoReady ? "opacity-100" : "opacity-0"
@@ -42,7 +64,7 @@ export default function HomeHero() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-hidden="true"
           onCanPlay={() => setVideoReady(true)}
         >
@@ -83,14 +105,10 @@ export default function HomeHero() {
             Prices in £ · Depart UK
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35 }}
-            className="w-full max-w-3xl mx-auto rounded-xl bg-white/95 shadow-2xl shadow-ink/40 overflow-hidden"
-          >
+          {/* No entrance delay — search is the primary CTA and must appear ASAP */}
+          <div className="w-full max-w-3xl mx-auto rounded-xl bg-white/95 shadow-2xl shadow-ink/40 overflow-hidden">
             <AviasalesSearch />
-          </motion.div>
+          </div>
 
           <motion.p
             initial={{ opacity: 0 }}

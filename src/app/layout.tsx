@@ -7,6 +7,7 @@ import TravelpayoutsDrive from "@/components/TravelpayoutsDrive";
 import JsonLd from "@/components/JsonLd";
 import { getSiteUrl } from "@/lib/site";
 import { absoluteUrl, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
+import { getWidgetScriptSrc } from "@/lib/affiliate";
 
 const dmSans = DM_Sans({
   variable: "--font-sans",
@@ -92,6 +93,12 @@ export default function RootLayout({
       lang="en-GB"
       className={`${dmSans.variable} ${fraunces.variable} h-full antialiased scroll-smooth`}
     >
+      <head>
+        {/* Warm the Travelpayouts search widget early — ~400KB third-party script */}
+        <link rel="preconnect" href="https://tpwgt.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://tpwgt.com" />
+        <link rel="preload" as="script" href={getWidgetScriptSrc()} />
+      </head>
       <body className="min-h-full flex flex-col bg-sky text-ink selection:bg-accent/20">
         <JsonLd data={organizationJsonLd()} />
         <JsonLd data={websiteJsonLd()} />
