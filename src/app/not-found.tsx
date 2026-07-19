@@ -19,7 +19,7 @@ export default function NotFound() {
             Go home
           </Link>
           <Link
-            href="/flights"
+            href="/flights/"
             className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold border border-mist rounded-md hover:border-accent hover:text-accent"
           >
             Browse flights

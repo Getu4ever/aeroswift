@@ -14,7 +14,7 @@ export default function DealsPageContent() {
 
       <section className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-20">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-12 max-w-2xl"
@@ -40,7 +40,7 @@ export default function DealsPageContent() {
             return (
               <motion.article
                 key={`${deal.fromCode}-${deal.toCode}`}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: index * 0.06 }}
                 className="grid md:grid-cols-[200px_1fr_auto] gap-6 py-8 md:py-10 items-center"

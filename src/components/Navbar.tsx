@@ -6,11 +6,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { getAffiliateHomeLink } from "@/lib/affiliate";
 
 const NAV_LINKS = [
-  { label: "Flights", href: "/flights" },
-  { label: "Destinations", href: "/destinations" },
-  { label: "Deals", href: "/deals" },
-  { label: "How it works", href: "/how-it-works" },
-  { label: "Blog", href: "/blog" },
+  { label: "Flights", href: "/flights/" },
+  { label: "Destinations", href: "/destinations/" },
+  { label: "Deals", href: "/deals/" },
+  { label: "How it works", href: "/how-it-works/" },
+  { label: "Blog", href: "/blog/" },
 ] as const;
 
 export default function Navbar({
@@ -52,7 +52,7 @@ export default function Navbar({
 
         <div className="hidden lg:flex items-center gap-4">
           <Link
-            href="/support"
+            href="/support/"
             className="text-sm font-medium text-white/70 hover:text-white transition-colors"
           >
             Support
@@ -99,7 +99,7 @@ export default function Navbar({
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden absolute top-full left-0 w-full bg-ink border-b border-white/10 px-6 py-8 flex flex-col gap-5 shadow-xl overflow-hidden"
           >
-            {[...NAV_LINKS, { label: "Support", href: "/support" }, { label: "About", href: "/about" }].map(
+            {[...NAV_LINKS, { label: "Support", href: "/support/" }, { label: "About", href: "/about/" }].map(
               (item) => (
                 <Link
                   key={item.href}

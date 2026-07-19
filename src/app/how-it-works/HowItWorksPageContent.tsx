@@ -28,8 +28,8 @@ export default function HowItWorksPageContent() {
 
       <section className="max-w-3xl mx-auto px-6 py-16 md:py-20">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 16 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
@@ -47,8 +47,8 @@ export default function HowItWorksPageContent() {
           {steps.map((step, i) => (
             <motion.li
               key={step.title}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 12 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
               className="flex gap-5"
             >
@@ -75,11 +75,11 @@ export default function HowItWorksPageContent() {
         <p className="text-sm text-ink/50 leading-relaxed">
           We may earn a commission when you book through a partner link. Read
           our{" "}
-          <Link href="/terms" className="text-accent font-semibold hover:underline">
+          <Link href="/terms/" className="text-accent font-semibold hover:underline">
             Terms
           </Link>{" "}
           and{" "}
-          <Link href="/support" className="text-accent font-semibold hover:underline">
+          <Link href="/support/" className="text-accent font-semibold hover:underline">
             Support
           </Link>{" "}
           pages for more detail.

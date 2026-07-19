@@ -58,8 +58,8 @@ export default function HomeHero() {
       <div className="relative z-10 flex-1 flex flex-col justify-center px-4 md:px-6 pb-16 pt-28">
         <div className="max-w-4xl mx-auto w-full text-center">
           <motion.h1
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 12 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6 }}
             className="mb-5"
           >
@@ -75,8 +75,8 @@ export default function HomeHero() {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ y: 8 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-sm text-white/55 mb-8"
           >
@@ -84,8 +84,8 @@ export default function HomeHero() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.7, delay: 0.35 }}
             className="w-full max-w-3xl mx-auto rounded-xl bg-white/95 shadow-2xl shadow-ink/40 overflow-hidden"
           >
@@ -93,8 +93,8 @@ export default function HomeHero() {
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ y: 8 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.5, delay: 0.55 }}
             className="mt-5 text-xs text-white/50 max-w-md mx-auto leading-relaxed"
           >

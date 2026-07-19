@@ -12,7 +12,7 @@ export default function DestinationsPageContent() {
 
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-20">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-12 max-w-2xl"
@@ -27,7 +27,7 @@ export default function DestinationsPageContent() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >

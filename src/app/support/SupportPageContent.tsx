@@ -34,7 +34,7 @@ export default function SupportPageContent() {
       <section className="py-16 md:py-20 px-6">
         <div className="max-w-3xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mb-14"
@@ -52,7 +52,7 @@ export default function SupportPageContent() {
             {faqs.map((item, i) => (
               <motion.div
                 key={item.q}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="py-8"

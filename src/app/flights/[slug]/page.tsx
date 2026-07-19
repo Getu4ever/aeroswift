@@ -86,7 +86,7 @@ export default async function FlightRoutePage({ params }: Props) {
             Home
           </Link>
           <span className="mx-2">/</span>
-          <Link href="/flights" className="hover:text-accent">
+          <Link href="/flights/" className="hover:text-accent">
             Flights
           </Link>
           <span className="mx-2">/</span>
@@ -125,7 +125,7 @@ export default async function FlightRoutePage({ params }: Props) {
             Search {route.from} → {route.to} flights
           </a>
           <Link
-            href="/how-it-works"
+            href="/how-it-works/"
             className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-ink border border-mist rounded-md hover:border-accent hover:text-accent transition-colors"
           >
             How booking works
@@ -176,7 +176,7 @@ export default async function FlightRoutePage({ params }: Props) {
             {related.map((r) => (
               <li key={r.slug}>
                 <Link
-                  href={`/flights/${r.slug}`}
+                  href={`/flights/${r.slug}/`}
                   className="flex gap-4 items-center py-4 group"
                 >
                   <div className="relative w-16 h-12 rounded-md overflow-hidden bg-mist shrink-0">

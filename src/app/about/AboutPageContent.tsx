@@ -14,8 +14,8 @@ export default function AboutPageContent() {
 
       <section className="max-w-3xl mx-auto px-6 py-16 md:py-20">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 16 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
@@ -30,8 +30,8 @@ export default function AboutPageContent() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ scale: 0.98 }}
+          animate={{ scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-12 relative h-56 md:h-80 w-full rounded-lg overflow-hidden"
         >
@@ -46,8 +46,8 @@ export default function AboutPageContent() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="space-y-10 text-ink/70 leading-relaxed"
         >
@@ -82,7 +82,7 @@ export default function AboutPageContent() {
               We focus on departures from the UK, prices in pounds, and routes
               people actually fly — weekend city breaks, winter sun, and the
               odd long-haul adventure.{" "}
-              <Link href="/how-it-works" className="text-accent font-semibold hover:underline">
+              <Link href="/how-it-works/" className="text-accent font-semibold hover:underline">
                 See how it works
               </Link>
               .

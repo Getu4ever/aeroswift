@@ -33,7 +33,7 @@ function RouteRow({ route }: { route: UkRoute }) {
     <li className="group">
       <div className="flex gap-4 md:gap-5 py-5 md:py-6 items-stretch">
         <Link
-          href={`/flights/${route.slug}`}
+          href={`/flights/${route.slug}/`}
           className="relative w-28 sm:w-36 md:w-44 h-24 sm:h-28 shrink-0 overflow-hidden rounded-lg bg-mist"
         >
           <Image
@@ -47,7 +47,7 @@ function RouteRow({ route }: { route: UkRoute }) {
 
         <div className="flex-1 min-w-0 flex flex-col justify-center">
           <Link
-            href={`/flights/${route.slug}`}
+            href={`/flights/${route.slug}/`}
             className="font-display text-lg md:text-xl font-semibold text-ink group-hover:text-accent transition-colors"
           >
             {route.from}
@@ -60,7 +60,7 @@ function RouteRow({ route }: { route: UkRoute }) {
               {route.fromCode}–{route.toCode}
             </span>
             <Link
-              href={`/flights/${route.slug}`}
+              href={`/flights/${route.slug}/`}
               className="text-sm font-semibold text-accent hover:text-accent-dark"
             >
               Guide →
@@ -95,7 +95,7 @@ export default function FlightsPageContent() {
       <Navbar />
 
       <motion.section
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative overflow-hidden border-b border-mist"
@@ -124,7 +124,7 @@ export default function FlightsPageContent() {
       </motion.section>
 
       <motion.section
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
         className="max-w-5xl mx-auto px-6 py-12 md:py-16"
@@ -135,12 +135,12 @@ export default function FlightsPageContent() {
             {featured.map((route, index) => (
               <motion.div
                 key={route.slug}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: 0.15 + index * 0.08 }}
               >
                 <Link
-                  href={`/flights/${route.slug}`}
+                  href={`/flights/${route.slug}/`}
                   className="group relative h-48 rounded-lg overflow-hidden block"
                 >
                   <Image
@@ -200,14 +200,14 @@ export default function FlightsPageContent() {
         <p className="text-sm text-ink/50">
           Looking for inspiration instead? Browse{" "}
           <Link
-            href="/destinations"
+            href="/destinations/"
             className="text-accent font-semibold hover:underline"
           >
             destinations
           </Link>{" "}
           or check{" "}
           <Link
-            href="/deals"
+            href="/deals/"
             className="text-accent font-semibold hover:underline"
           >
             current deals

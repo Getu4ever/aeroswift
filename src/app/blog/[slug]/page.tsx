@@ -198,7 +198,7 @@ export default async function BlogPostPage({
                   imageUrl?: string;
                 }) => (
                   <Link
-                    href={`/blog/${rel.slug.current}`}
+                    href={`/blog/${rel.slug.current}/`}
                     key={rel.slug.current}
                     className="group"
                   >
@@ -222,7 +222,7 @@ export default async function BlogPostPage({
 
         <div className="mt-12 pt-8 border-t border-mist">
           <Link
-            href="/blog"
+            href="/blog/"
             className="inline-flex items-center text-accent font-semibold hover:underline"
           >
             ← Back to blog

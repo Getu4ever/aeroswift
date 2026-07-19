@@ -16,7 +16,7 @@ export default function RoutesTeaser() {
             </h2>
           </div>
           <Link
-            href="/flights"
+            href="/flights/"
             className="text-sm font-semibold text-accent hover:text-accent-dark transition"
           >
             See all routes →
@@ -27,7 +27,7 @@ export default function RoutesTeaser() {
           {preview.map((route) => (
             <li key={route.slug} className="group">
               <Link
-                href={`/flights/${route.slug}`}
+                href={`/flights/${route.slug}/`}
                 className="flex gap-4 md:gap-5 py-5 md:py-6 items-center"
               >
                 <div className="relative w-24 sm:w-32 md:w-40 h-20 sm:h-24 shrink-0 overflow-hidden rounded-lg bg-mist">

@@ -51,12 +51,11 @@ export function buildPageMetadata({
 }
 
 export function organizationJsonLd() {
-  const base = getSiteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "AeroSwift",
-    url: base,
+    url: absoluteUrl("/"),
     email: getSupportEmail(),
     description:
       "UK flight comparison site helping travellers find fares and book with trusted partners.",
@@ -68,21 +67,12 @@ export function organizationJsonLd() {
 }
 
 export function websiteJsonLd() {
-  const base = getSiteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "AeroSwift",
-    url: base,
+    url: absoluteUrl("/"),
     inLanguage: "en-GB",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${base}/flights/`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 

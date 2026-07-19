@@ -21,7 +21,7 @@ export default function BlogPageContent({ posts }: { posts: BlogPostCard[] }) {
 
       <section className="max-w-3xl mx-auto px-6 py-16 md:py-20">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-12"
@@ -36,7 +36,7 @@ export default function BlogPageContent({ posts }: { posts: BlogPostCard[] }) {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
         >
@@ -55,12 +55,12 @@ export default function BlogPageContent({ posts }: { posts: BlogPostCard[] }) {
               {posts.map((post, index) => (
                 <motion.li
                   key={post.slug}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.15 + index * 0.08 }}
                 >
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}/`}
                     className="flex flex-col sm:flex-row gap-5 py-8 group"
                   >
                     {post.imageUrl && (

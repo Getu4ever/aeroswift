@@ -14,7 +14,7 @@ export default function PrivacyPageContent() {
 
       <article className="max-w-3xl mx-auto py-16 md:py-20 px-6">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >

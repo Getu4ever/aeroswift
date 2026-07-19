@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: siteUrl,
+    url: absoluteUrl("/"),
     siteName: "AeroSwift",
     title: "AeroSwift | Cheap Flights from the UK",
     description:

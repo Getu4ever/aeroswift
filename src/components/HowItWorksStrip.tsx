@@ -34,7 +34,7 @@ export default function HowItWorksStrip() {
             </p>
           </div>
           <Link
-            href="/how-it-works"
+            href="/how-it-works/"
             className="text-sm font-semibold text-accent hover:text-accent-dark transition shrink-0"
           >
             Full details →

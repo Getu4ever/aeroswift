@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 /**
  * Gentle page slide-in — remounts on route change so the animation
- * always plays (same feel as destinations / deals / about).
+ * always plays. Avoids opacity:0 in SSR HTML (bad for indexing).
  */
 export default function PageFade({
   children,
@@ -21,8 +21,8 @@ export default function PageFade({
   return (
     <motion.div
       key={pathname}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ y: 20 }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
       className={className}
     >
